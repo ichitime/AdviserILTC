@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">Application</string>
+    <string name="appname">AppName</string>
+    <string name="email_address">Email Address</string>
+    <string name="password">Password</string>
+    <string name="register">Register</string>
+    <string name="forgot_pswd">Forgot password?</string>
+    <string name="guest">Continue without registration</string>
+    <string name="full_name">Full Name</string>
+    <string name="nickname">Nick</string>
+    <string name="login">LOGIN</string>
+    <string name="reg">Register</string>
+    <string name="sign_in">Sign in</string>
+    <string name="registration">Registration</string>
+    <string name="sign_up">Sign up</string>
+    <string name="login_with">Login with</string>
+    <string name="hint_fullname">Full Name</string>
+    <string name="hint_nickname">Nickname</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_pswd">Password</string>
+    <string name="back">Back</string>
+    <string name="game_title" translatable="false">DOOM Eternal</string>
+    <string name="publisher" translatable="false">Publisher: </string>
+    <string name="publisher_name" translatable="false">Bethesda Softworks</string>
+    <string name="description" translatable="false">Hell’s armies have invaded Earth. Become the Slayer in an epic single-player campaign to conquer demons across dimensions and stop the final destruction of humanity. The only thing they fear... is you.</string>
+    <string name="tags_label" translatable="false">Tags:</string>
+    <string name="tag_1" translatable="false">Single-player</string>
+    <string name="tag_2" translatable="false"> Online PvP</string>
+    <string name="tag_3" translatable="false">Achievements</string>
+    <string name="tag_4" translatable="false">Support Steam Cloud</string>
+    <string name="like" translatable="false"> Like</string>
+    <string name="share" translatable="false"> Share</string>
+    <string name="succsess_auth_massage">Signed in successfully</string>
+    <string name="created_by_iltc" translatable="false">Created by ILTC</string>
+    <string name="News" translatable="false">News</string>
+    <string name="Calendar_in_News" translatable="false">Calendar</string>
+    <string name="Calendar" translatable="false">Calendar</string>
+
+</resources>

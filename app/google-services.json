@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "759263587029",
+    "firebase_url": "https://gameadviser-73eba-default-rtdb.firebaseio.com",
+    "project_id": "gameadviser-73eba",
+    "storage_bucket": "gameadviser-73eba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:759263587029:android:44779957f1c1ead50f105c",
+        "android_client_info": {
+          "package_name": "com.example.adviseriltc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "759263587029-0v3s6lav3t89paq8fp5vhnr6oh9tq519.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDas-cox_CJ3mKTiMbUnrDqxVyzq_TQEc4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "759263587029-0v3s6lav3t89paq8fp5vhnr6oh9tq519.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
