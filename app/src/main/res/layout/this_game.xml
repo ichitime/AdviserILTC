@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+<ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:adjustViewBounds="true"
+    android:src="@drawable/game_banner">
+</ImageView>
+
+        <ImageButton
+            android:id="@+id/sign_in_back"
+            android:layout_width="33sp"
+            android:layout_height="33sp"
+            android:layout_gravity="start"
+            android:layout_marginTop="15sp"
+            android:layout_marginLeft="15sp"
+            android:background="@drawable/strelka"/>
+</RelativeLayout>
+
+        <TextView
+            android:id="@id/game_title_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DOOM"/>
+    <TextView
+        android:id="@+id/publisher_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Publisher:"/>
+    <TextView
+        android:id="@+id/game_publisher_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Betsheda Softworks"/>
+    <ImageView
+        android:id="@+id/poster_id"
+        android:layout_width="106dp"
+        android:layout_height="125dp"
+        android:src="@drawable/poster"/>
+    <TextView
+        android:id="@+id/game_description_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hell’s armies have invaded Earth. Become the Slayer in an epic single-player campaign to conquer demons across dimensions and stop the final destruction of humanity. The only thing they fear... is you."/>
+    <TextView
+        android:id="@+id/tags_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tags"/>
+    <TextView
+        android:id="@id/game_tags_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Co-op, Adventure, Puzzle, 3D Platformer"/>
+    <TextView
+        android:id="@id/game_price_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Price"/>
+    <VideoView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"/>
+    <Button
+        android:id="@+id/button_like_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="LIKE"
+        app:layout_goneMarginEnd="0dp"/>
+</LinearLayout>

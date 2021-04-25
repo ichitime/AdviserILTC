@@ -17,8 +17,8 @@
         android:layout_width="33sp"
         android:layout_height="33sp"
         android:layout_gravity="start"
-        android:layout_marginTop="25sp"
-        android:layout_marginLeft="25sp"
+        android:layout_marginTop="15sp"
+        android:layout_marginLeft="15sp"
         android:background="@drawable/strelka"/>
 
 

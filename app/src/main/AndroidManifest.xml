@@ -9,11 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".News"></activity>
-        <activity android:name=".SignIn" />
-        <activity android:name=".SignUp" />
-        <activity
-            android:name=".MainActivity"
+        <activity android:name=".News" android:screenOrientation="portrait"/>
+        <activity android:name=".SignIn" android:screenOrientation="portrait"/>
+        <activity android:name=".SignUp" android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity" android:screenOrientation="portrait"
             android:label="YourAppName"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
@@ -22,11 +21,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Calendar" />
-        <activity android:name=".Games" />
-        <activity android:name=".Random_game" />
-        <activity android:name=".Profile" />
-        <activity android:name=".Settings" />
+        <activity android:name=".Calendar" android:screenOrientation="portrait"/>
+        <activity android:name=".Games" android:screenOrientation="portrait"/>
+        <activity android:name=".Random_game" android:screenOrientation="portrait"/>
+        <activity android:name=".Profile" android:screenOrientation="portrait"/>
+        <activity android:name=".Settings" android:screenOrientation="portrait"/>
+        <activity android:name=".Current_Game" android:screenOrientation="portrait"
+            android:usesCleartextTraffic="true"/>
     </application>
 
 </manifest>

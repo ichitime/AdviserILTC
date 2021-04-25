@@ -79,6 +79,22 @@
             android:textColor="#FFFFFF"
             android:textSize="24sp"
             android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/login_guest_btn"
+            android:layout_width="170sp"
+            android:layout_height="56sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20sp"
+            android:background="@drawable/radius_btn"
+            android:fontFamily="@font/overpass_mono"
+            android:gravity="center"
+            android:text="@string/login_guest"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            />
+
     </LinearLayout>
 
     <LinearLayout
@@ -123,5 +139,6 @@
             android:background="@drawable/ic_facebook"/>
 
     </LinearLayout>
+
 
 </LinearLayout>

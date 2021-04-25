@@ -14,6 +14,7 @@
     <string name="sign_in">Войти</string>
     <string name="registration">Регистрация</string>
     <string name="sign_up">Регистрация</string>
+    <string name="login_guest" translatable="false">Войти как гость</string>
     <string name="login_with">Войти с помощью</string>
     <string name="hint_fullname">Имя</string>
     <string name="hint_nickname">Никнейм</string>

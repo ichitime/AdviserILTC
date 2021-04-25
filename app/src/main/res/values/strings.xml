@@ -18,6 +18,7 @@
     <string name="hint_nickname">Nickname</string>
     <string name="hint_email">Email</string>
     <string name="hint_pswd">Password</string>
+    <string name="login_guest" translatable="false">Login as a guest</string>
     <string name="back">Back</string>
     <string name="game_title" translatable="false">DOOM Eternal</string>
     <string name="publisher" translatable="false">Publisher: </string>

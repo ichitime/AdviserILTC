@@ -11,6 +11,99 @@
     android:orientation="vertical"
     tools:context=".Random_game">
 
+    <RelativeLayout
+
+        android:layout_width="300dp"
+        android:layout_height="370dp"
+        android:layout_above="@+id/above"
+        android:layout_below="@+id/top"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="57dp"
+        android:layout_marginBottom="133dp"
+        android:background="@drawable/radius_btn">
+
+        <ImageView
+            android:id="@+id/img_random"
+            android:layout_width="150dp"
+            android:layout_height="230dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/minecraft"
+            android:scaleType="centerCrop" >
+
+        </ImageView>
+
+        <TextView
+            android:id="@+id/name_random"
+            android:layout_width="151dp"
+            android:layout_height="71dp"
+            android:layout_marginStart="150dp"
+            android:text="GAME NAME"
+            android:textAlignment="center"
+            android:textSize="20sp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/discription_random"
+            android:layout_width="match_parent"
+            android:layout_height="112dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="235dp"
+            android:layout_marginEnd="0dp"
+            android:text="Описание:"
+            android:textSize="20sp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/teg_random"
+            android:layout_width="146dp"
+            android:layout_height="160dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="75dp"
+            android:layout_marginEnd="-1dp"
+            android:layout_marginBottom="77dp"
+            android:padding="5dp"
+            android:text="Теги:"
+            android:textSize="20sp">
+
+        </TextView>
+
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/discription_random"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="52dp"
+            android:text="перейти на страницу с игрой"
+            android:textSize="10sp"
+            android:background="@drawable/radius_btn"/>
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/random_game"
+        android:text="Мне повезёт"
+        android:background="@drawable/radius_btn"
+        android:layout_width="151dp"
+        android:layout_height="50dp"
+        android:layout_above="@+id/above"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="131dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="130dp"
+        android:layout_marginBottom="30dp">
+
+    </Button>
+
     <LinearLayout
         android:id="@+id/top"
         android:layout_width="match_parent"

@@ -9,7 +9,7 @@ import android.widget.*;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button sign_up, sign_in;
+    Button sign_up, sign_in, login_guest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         sign_in.setOnClickListener(this);
         sign_up = (Button) findViewById(R.id.sign_up_btn);
         sign_up.setOnClickListener(this);
+        sign_up = (Button) findViewById(R.id.login_guest_btn);
+        sign_up.setOnClickListener(this);
 
     }
 
@@ -40,6 +42,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.sign_up_btn:
                 startActivity(new Intent(this, SignUp.class));
+                break;
+            case R.id.login_guest_btn:
+                startActivity(new Intent(this, News.class));
                 break;
             case R.id.vk_auth:
             case R.id.facebook_auth:
