@@ -9,7 +9,6 @@ public class User {
 
 
 
-
     public User(String fullName, String nickName, String email, String pswd, ArrayList<fvdGame> fvdGames) {
         this.fullName = fullName;
         this.nickName = nickName;

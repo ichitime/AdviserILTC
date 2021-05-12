@@ -38,20 +38,7 @@ public class Current_Game extends AppCompatActivity implements View.OnClickListe
     private FirebaseAuth mAuth;
     boolean flag = true;
     DatabaseReference myRef;
- //   DatabaseReference fromPath;
-//    Button play;
-//    VideoView videoView;
-//    MediaController mediaController;
-
-//    public void videoPlay(View v){
-//        String videoPath="android.resource://" + getPackageName() + "/" +  R.raw.doom;
-//        Uri uri=Uri.parse(videoPath);
-//        videoView.setVideoURI(uri);
-//        videoView.setMediaController(mediaController);
-//        mediaController.setAnchorView(videoView);
-//        videoView.start();
-//    }
-
+    ArrayList<fvdGame> fvdGamesList;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -61,15 +48,12 @@ public class Current_Game extends AppCompatActivity implements View.OnClickListe
         ImageButton signInBack = (ImageButton) findViewById(R.id.sign_in_back);
         signInBack.setOnClickListener(this);
         button_link=findViewById(R.id.links_game_id);
-//        Button gameLink = (Button) findViewById(R.id.links_game_id);
-//        gameLink.setOnClickListener(this);
+
 
         mAuth = FirebaseAuth.getInstance();
 
         myRef=FirebaseDatabase.getInstance().getReference();
 
-//        play=findViewById(R.id.like);
-//        mediaController=new MediaController(this);
         textView_title=findViewById(R.id.game_title_id);
         textView_price=findViewById(R.id.game_price_id);
         textView_link=findViewById(R.id.links_game_id);
@@ -118,18 +102,6 @@ public class Current_Game extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-//        Uri uri = Uri.parse("http://www.google.com"); // missing 'http://' will cause crashed
-//        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-//        startActivity(intent);
-
-//        View.OnClickListener oclBtnOk = new View.OnClickListener() {
-//            public void onClick(View view) {
-//                switch (view.getId()) {
-//                    case R.id.links_game_id:
-//        Intent intent1 = new Intent(Intent.ACTION_VIEW,Uri.parse(Link));
-//        startActivity(intent1);}
-//            }
-//        };
 
         final ImageButton imageButton_like = (ImageButton) findViewById(R.id.like_button);
         imageButton_like.setOnClickListener(new View.OnClickListener()
@@ -137,49 +109,14 @@ public class Current_Game extends AppCompatActivity implements View.OnClickListe
             public void onClick(View v)
             {
 
-                    // меняем изображение на кнопке
+//                    ArrayList<Game> ggg = new ArrayList<>().add()
                     if (flag){
                         imageButton_like.setImageResource(R.drawable.like_form2);
                         Toast.makeText(com.example.adviseriltc.Current_Game.this, "Добавлено в избранное", Toast.LENGTH_SHORT).show();
                         flag = false;
 
-//                            fvdGame fia = new User(title, tag1, tag2, tag3, tag4, price, image, link, video, release_date, publisher, description, developer, genre);
-//                            FirebaseDatabase.getInstance().getReference("Users")
-//                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-//                                    .setValue(fia).addOnCompleteListener(new OnCompleteListener<Void>() {
-//                                @Override
-//                                public void onComplete(@NonNull Task<Void> task) {
-//                                    if(task.isSuccessful()) {
-//                                        Toast.makeText(com.example.adviseriltc.Current_Game.this, "Пользователь зарегистрирован!", Toast.LENGTH_SHORT).show();
-//                                        //progressBar.setVisibility(View.GONE);
-//
-//                                        //redirect to SingIn layout
-//
-//                                    }else {
-//                                        Toast.makeText(com.example.adviseriltc.Current_Game.this, "Ошибка!", Toast.LENGTH_SHORT).show();
-//                                        //progressBar.setVisibility(View.GONE);
-//                                    }
-//                                }
-//                            });
-
-                        //myRef = Database.getReference("Users").child("idUsers");
-//                        private void copyRecord(DatabaseReference fromPath, final DatabaseReference toPath) {
-//                            fromPath.addListenerForSingleValueEvent(new ValueEventListener()  {
-//                                @Override
-//                                public void onDataChange(DataSnapshot dataSnapshot) {
-//                                    toPath.setValue(dataSnapshot.getValue().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
-//                                        @Override
-//                                        public void onComplete(@NonNull Task<Void> task) {
-//
-//                                        }
-//                                    });
-//                                }
-//                                @Override
-//                                public void onCancelled(DatabaseError databaseError) {}
-//                            });
-//                        }
                     }else{
-                        // возвращаем первую картинку
+
                         imageButton_like.setImageResource(R.drawable.like_form1);
                         Toast.makeText(com.example.adviseriltc.Current_Game.this, "Удалено из избранного", Toast.LENGTH_SHORT).show();
                         flag=true;

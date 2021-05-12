@@ -43,7 +43,7 @@ public class Games extends AppCompatActivity implements View.OnClickListener{
 
     private DatabaseReference myRef;
 
-    private ArrayList<Game> gamesList;
+    public ArrayList<Game> gamesList;
     private RecyclerAdapter recyclerAdapter;
     private Context mContext;
 
@@ -186,6 +186,7 @@ public class Games extends AppCompatActivity implements View.OnClickListener{
                     games.setDeveloper(snapshot.child("РАЗРАБОТЧИК").getValue().toString());
                     games.setGenre(snapshot.child("ЖАНР").getValue().toString());
                     gamesList.add(games);
+
 
                 }
 

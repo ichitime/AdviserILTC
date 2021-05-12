@@ -30,6 +30,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     private EditText editFullName, editNickname, editEmail, editPassword;
     private TextView textSignUpBack, labelName;
     private ArrayList<fvdGame> fvdGamess;
+    ArrayList<Test> zaeball;
     private ProgressBar progressBar;
     private Button signUpBtn;
 
@@ -86,7 +87,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         String email = editEmail.getText().toString().trim();
         String password = editPassword.getText().toString().trim();
         ArrayList<fvdGame> fvdGames= fvdGamess;
-
+        ArrayList<Test> zaebal = zaeball;
 
         //progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
