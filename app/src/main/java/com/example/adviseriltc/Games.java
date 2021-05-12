@@ -1,15 +1,25 @@
 package com.example.adviseriltc;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -23,11 +33,11 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
 public class Games extends AppCompatActivity implements View.OnClickListener{
-
 
     RecyclerView recyclerView;
 
@@ -36,7 +46,80 @@ public class Games extends AppCompatActivity implements View.OnClickListener{
     private ArrayList<Game> gamesList;
     private RecyclerAdapter recyclerAdapter;
     private Context mContext;
-   // private CardView click_card;
+
+    SharedPreferences preferences;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+//        getMenuInflater().inflate(R.menu.menu, menu);
+//
+//        MenuItem item = menu.findItem(R.id.action_search);
+
+        MenuInflater menuInflater =getMenuInflater();
+        menuInflater.inflate(R.menu.menu, menu);
+
+        MenuItem item=menu.findItem(R.id.action_search);
+
+        androidx.appcompat.widget.SearchView searchView = (androidx.appcompat.widget.SearchView) MenuItemCompat.getActionView(item);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+                recyclerAdapter.getFilter().filter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                recyclerAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        int id= item.getItemId();
+
+        if (id==R.id.action_sort){
+            sortDailog();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void sortDailog() {
+        String[] options ={"Ascending", "Descending"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Sort by:");
+        builder.setIcon(R.drawable.sort_img);
+        builder.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                if(which==0){
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("Sort", "ascending");
+                    editor.apply();
+                    recreate();
+                }
+
+                if(which==1){
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("Sort", "descending");
+                    editor.apply();
+                    recreate();
+                }
+            }
+        });
+
+        builder.create().show();
+    }
 
     @Override
     protected void onCreate (Bundle savedInstanceState){
@@ -55,207 +138,32 @@ public class Games extends AppCompatActivity implements View.OnClickListener{
 
         recyclerView = findViewById(R.id.recyclerview_id);
 
+        preferences=this.getSharedPreferences("My_pref", MODE_PRIVATE);
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(new GridLayoutManager(this,2));
         recyclerView.setHasFixedSize(true);
+
 
         myRef=FirebaseDatabase.getInstance().getReference();
 
         gamesList= new ArrayList<>();
 
-
         //ClearAll();
-
 
         GetDataFromFirebase();
 
-//        click_card=(CardView)findViewById(R.id.cv_id);
-//        click_card.setOnClickListener(this);
+        Toolbar toolbar =findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
     }
 
     private void GetDataFromFirebase(){
 
-        Query query_adventures = myRef.child("Parsing/Adventures");
-        Query query_indi= myRef.child("Parsing/Indi");
-        Query query_casuals= myRef.child("Parsing/Casuals");
-        Query query_freegames= myRef.child("Parsing/Freegames");
-        Query query_mmos= myRef.child("Parsing/Mmos");
-        Query query_races= myRef.child("Parsing/Races");
-        Query query_RP = myRef.child("Parsing/RP");
-        Query query_simulator = myRef.child("Parsing/Simulator");
+        Query query_simulator = myRef.child("Parsing2");
 
-        query_adventures.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    Game games = new Game();
-
-                    games.setImage(snapshot.child("IMG").getValue().toString());
-                    games.setTitle(snapshot.child("TITLE").getValue().toString());
-                    games.setTag(snapshot.child("TAG").getValue().toString());
-                    games.setPrice(snapshot.child("PRICE").getValue().toString());
-                    gamesList.add(games);
-                }
-
-                recyclerAdapter = new RecyclerAdapter(getApplicationContext(), gamesList);
-                recyclerView.setAdapter(recyclerAdapter);
-                recyclerAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-        query_indi.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    Game games = new Game();
-
-                    games.setImage(snapshot.child("IMG").getValue().toString());
-                    games.setTitle(snapshot.child("TITLE").getValue().toString());
-                    games.setTag(snapshot.child("TAG").getValue().toString());
-                    games.setPrice(snapshot.child("PRICE").getValue().toString());
-                    gamesList.add(games);
-                }
-
-                recyclerAdapter = new RecyclerAdapter(getApplicationContext(), gamesList);
-                recyclerView.setAdapter(recyclerAdapter);
-                recyclerAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        query_casuals.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    Game games = new Game();
-
-                    games.setImage(snapshot.child("IMG").getValue().toString());
-                    games.setTitle(snapshot.child("TITLE").getValue().toString());
-                    games.setTag(snapshot.child("TAG").getValue().toString());
-                    games.setPrice(snapshot.child("PRICE").getValue().toString());
-                    gamesList.add(games);
-                }
-
-                recyclerAdapter = new RecyclerAdapter(getApplicationContext(), gamesList);
-                recyclerView.setAdapter(recyclerAdapter);
-                recyclerAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        query_freegames.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    Game games = new Game();
-
-                    games.setImage(snapshot.child("IMG").getValue().toString());
-                    games.setTitle(snapshot.child("TITLE").getValue().toString());
-                    games.setTag(snapshot.child("TAG").getValue().toString());
-                    games.setPrice(snapshot.child("PRICE").getValue().toString());
-                    gamesList.add(games);
-                }
-
-                recyclerAdapter = new RecyclerAdapter(getApplicationContext(), gamesList);
-                recyclerView.setAdapter(recyclerAdapter);
-                recyclerAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        query_mmos.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    Game games = new Game();
-
-                    games.setImage(snapshot.child("IMG").getValue().toString());
-                    games.setTitle(snapshot.child("TITLE").getValue().toString());
-                    games.setTag(snapshot.child("TAG").getValue().toString());
-                    games.setPrice(snapshot.child("PRICE").getValue().toString());
-                    gamesList.add(games);
-                }
-
-                recyclerAdapter = new RecyclerAdapter(getApplicationContext(), gamesList);
-                recyclerView.setAdapter(recyclerAdapter);
-                recyclerAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        query_races.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    Game games = new Game();
-
-                    games.setImage(snapshot.child("IMG").getValue().toString());
-                    games.setTitle(snapshot.child("TITLE").getValue().toString());
-                    games.setTag(snapshot.child("TAG").getValue().toString());
-                    games.setPrice(snapshot.child("PRICE").getValue().toString());
-                    gamesList.add(games);
-                }
-
-                recyclerAdapter = new RecyclerAdapter(getApplicationContext(), gamesList);
-                recyclerView.setAdapter(recyclerAdapter);
-                recyclerAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-        query_RP.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    Game games = new Game();
-
-                    games.setImage(snapshot.child("IMG").getValue().toString());
-                    games.setTitle(snapshot.child("TITLE").getValue().toString());
-                    games.setTag(snapshot.child("TAG").getValue().toString());
-                    games.setPrice(snapshot.child("PRICE").getValue().toString());
-                    gamesList.add(games);
-                }
-
-                recyclerAdapter = new RecyclerAdapter(getApplicationContext(), gamesList);
-                recyclerView.setAdapter(recyclerAdapter);
-                recyclerAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
         query_simulator.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -263,16 +171,37 @@ public class Games extends AppCompatActivity implements View.OnClickListener{
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                     Game games = new Game();
 
-                    games.setImage(snapshot.child("IMG").getValue().toString());
-                    games.setTitle(snapshot.child("TITLE").getValue().toString());
-                    games.setTag(snapshot.child("TAG").getValue().toString());
-                    games.setPrice(snapshot.child("PRICE").getValue().toString());
+                    games.setImage(snapshot.child("ИЗОБРАЖЕНИЕ").getValue().toString());
+                    games.setTitle(snapshot.child("НАЗВАНИЕ").getValue().toString());
+                    games.setTag1(snapshot.child("ТЭГ1").getValue().toString());
+                    games.setTag2(snapshot.child("ТЭГ2").getValue().toString());
+                    games.setTag3(snapshot.child("ТЭГ3").getValue().toString());
+                    games.setTag4(snapshot.child("ТЭГ4").getValue().toString());
+                    games.setPrice(snapshot.child("ЦЕНА").getValue().toString());
+                    games.setLink(snapshot.child("ССЫЛКА").getValue().toString());
+                    games.setVideo(snapshot.child("ВИДЕО").getValue().toString());
+                    games.setRelease_date(snapshot.child("ДАТА ВЫХОДА").getValue().toString());
+                    games.setPublisher(snapshot.child("ИЗДАТЕЛЬ").getValue().toString());
+                    games.setDescription(snapshot.child("ОПИСАНИЕ").getValue().toString());
+                    games.setDeveloper(snapshot.child("РАЗРАБОТЧИК").getValue().toString());
+                    games.setGenre(snapshot.child("ЖАНР").getValue().toString());
                     gamesList.add(games);
+
+                }
+
+                String mSortSetting = preferences.getString("Sort", "ascending");
+
+                if(mSortSetting.equals("ascending")){
+                    Collections.sort(gamesList, Game.BY_TITLE_ASCENDING);
+                }
+                else if(mSortSetting.equals("descending")){
+                    Collections.sort(gamesList, Game.BY_TITLE_DESCENDING);
                 }
 
                 recyclerAdapter = new RecyclerAdapter(getApplicationContext(), gamesList);
                 recyclerView.setAdapter(recyclerAdapter);
                 recyclerAdapter.notifyDataSetChanged();
+
             }
 
             @Override
@@ -333,4 +262,5 @@ public class Games extends AppCompatActivity implements View.OnClickListener{
 
         }
     }
+
 }

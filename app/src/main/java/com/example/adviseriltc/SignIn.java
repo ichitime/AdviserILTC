@@ -1,6 +1,8 @@
 package com.example.adviseriltc;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -32,17 +34,20 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
+
         mAuth = FirebaseAuth.getInstance();
+
 
 
         //signed in
         //signed out
+        //firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
         FirebaseAuth.AuthStateListener mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
+                FirebaseUser user = firebaseAuth.getInstance().getCurrentUser();
                 if (user != null) {
-                    //signed in
+
                 } else {
                     //signed out
                 }
@@ -71,6 +76,7 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
                 break;
         }
     }
+
 
     private void userLogin() {
         String email = signInEmail.getText().toString().trim();

@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar"/>
     <style name="Tags">
         <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Body1</item>
         <item name="android:background">@drawable/tags_bgr</item>
         <item name="android:textColor">?android:textColorPrimaryInverse</item>
+    </style>
+    <style name="Toolbar">
+        <item name="android:layout_width">match_parent</item>
     </style>
 </resources>

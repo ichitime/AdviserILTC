@@ -1,10 +1,18 @@
 package com.example.adviseriltc;
 
+import android.content.Context;
 import android.content.Intent;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -15,6 +23,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
 
         sign_up = (Button) findViewById(R.id.sign_up_btn);
@@ -34,6 +44,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    FirebaseAuth.AuthStateListener mAuthListener = new FirebaseAuth.AuthStateListener() {
+        @Override
+        public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+            FirebaseUser user = firebaseAuth.getInstance().getCurrentUser();
+//                if (user != null) {
+//
+//                } else {
+//                    //signed out
+//                }
+            if (user != null) {  //User is signed in
+                Intent i = new Intent(MainActivity.this, News.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(i);
+            } else {
+                // User is signed out
+                //Log.d(TAG, "onAuthStateChanged:signed_out");
+            }
+        }
+
+    };
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -45,10 +76,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.login_guest_btn:
                 startActivity(new Intent(this, News.class));
-                break;
-            case R.id.vk_auth:
-            case R.id.facebook_auth:
-                Toast.makeText(MainActivity.this, "Временно недоступно!", Toast.LENGTH_LONG).show();
                 break;
         }
     }

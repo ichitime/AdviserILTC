@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,19 +20,22 @@ import com.bumptech.glide.Glide;
 import com.google.firebase.database.DatabaseReference;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 
-class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder>{
+class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> implements Filterable{
 
     private  static final String TAG ="RecyclerView";
-    private  Context mContext;
-    private ArrayList<Game> gamesList;
+    public   Context mContext;
+    public ArrayList<Game> gamesList, filterList;
+    CustomFilter filter;
 
 
     public RecyclerAdapter(Context mContext, ArrayList<Game> gamesList){
         this.mContext=mContext;
         this.gamesList=gamesList;
+        this.filterList=gamesList;
 
     }
 
@@ -46,7 +51,7 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull RecyclerAdapter.ViewHolder holder, int position) {
     holder.textView.setText(gamesList.get(position).getTitle());
-    holder.textView1.setText(gamesList.get(position).getTag());
+    holder.textView1.setText(gamesList.get(position).getGenre());
     holder.textView2.setText(gamesList.get(position).getPrice());
     Glide.with(mContext).load(gamesList.get(position).getImage()).into(holder.imageView);
 
@@ -57,6 +62,14 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder>{
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtra("Title", gamesList.get(position).getTitle());
             intent.putExtra("Price", gamesList.get(position).getPrice());
+            intent.putExtra("Link",gamesList.get(position).getLink());
+            intent.putExtra("Video",gamesList.get(position).getVideo());
+            intent.putExtra("Publisher", gamesList.get(position).getPublisher());
+            intent.putExtra("Developer", gamesList.get(position).getDeveloper());
+            intent.putExtra("Release", gamesList.get(position).getRelease_date());
+            intent.putExtra("Description", gamesList.get(position).getDescription());
+            intent.putExtra("Genre", gamesList.get(position).getGenre());
+            //intent.putExtra("Image", gamesList.get(position).getImage());
             mContext.startActivity(intent);
         }
     });
@@ -66,6 +79,17 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder>{
     public int getItemCount() {
         return gamesList.size();
     }
+
+    @Override
+    public Filter getFilter() {
+
+        if(filter==null){
+            filter = new CustomFilter(filterList, this);
+        }
+
+        return filter;
+    }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 

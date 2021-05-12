@@ -6,87 +6,59 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center_horizontal"
-    android:background="@drawable/background"
+    android:background="@drawable/background_main"
+    android:backgroundTint="#D036174A"
+    android:backgroundTintMode="src_atop"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context=".Random_game">
 
-    <RelativeLayout
-
-        android:layout_width="300dp"
-        android:layout_height="370dp"
-        android:layout_above="@+id/above"
-        android:layout_below="@+id/top"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="57dp"
-        android:layout_marginBottom="133dp"
-        android:background="@drawable/radius_btn">
+    <androidx.cardview.widget.CardView
+        android:layout_width="380dp"
+        android:layout_height="550dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical"
+        app:cardCornerRadius="10dp"
+        android:background="@drawable/radius_btn_random">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#B38284D1"></LinearLayout>
 
         <ImageView
             android:id="@+id/img_random"
-            android:layout_width="150dp"
-            android:layout_height="230dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:src="@drawable/minecraft"
-            android:scaleType="centerCrop" >
+            android:layout_width="match_parent"
+            android:layout_height="165dp"
 
+            android:scaleType="centerCrop"
+
+           >
         </ImageView>
+
 
         <TextView
             android:id="@+id/name_random"
-            android:layout_width="151dp"
-            android:layout_height="71dp"
-            android:layout_marginStart="150dp"
-            android:text="GAME NAME"
-            android:textAlignment="center"
-            android:textSize="20sp">
-
-        </TextView>
-
-        <TextView
-            android:id="@+id/discription_random"
             android:layout_width="match_parent"
-            android:layout_height="112dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="235dp"
-            android:layout_marginEnd="0dp"
-            android:text="Описание:"
-            android:textSize="20sp">
-
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:layout_marginTop="175dp"
+            android:textStyle="bold">
         </TextView>
 
-        <TextView
-            android:id="@+id/teg_random"
-            android:layout_width="146dp"
-            android:layout_height="160dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="75dp"
-            android:layout_marginEnd="-1dp"
-            android:layout_marginBottom="77dp"
-            android:padding="5dp"
-            android:text="Теги:"
-            android:textSize="20sp">
 
-        </TextView>
 
         <Button
+            android:id="@+id/link_page"
             android:layout_width="200dp"
             android:layout_height="40dp"
-            android:layout_below="@+id/discription_random"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="52dp"
             android:text="перейти на страницу с игрой"
             android:textSize="10sp"
-            android:background="@drawable/radius_btn"/>
-    </RelativeLayout>
+            android:layout_marginTop="120dp"
+            android:background="@drawable/radius_btn"
+            android:layout_gravity="center"/>
+    </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/random_game"
@@ -100,96 +72,72 @@
         android:layout_marginStart="131dp"
         android:layout_marginTop="45dp"
         android:layout_marginEnd="130dp"
-        android:layout_marginBottom="30dp">
+        android:layout_marginBottom="60dp">
 
     </Button>
 
     <LinearLayout
         android:id="@+id/top"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_height="60dp"
+        android:orientation="vertical"
+        android:background="@drawable/custombordertop">
 
-        android:gravity="start"
-        android:orientation="vertical">
-
-        <ImageButton
-            android:id="@+id/settings"
-            android:layout_width="33sp"
-            android:layout_height="33sp"
-            android:layout_gravity="end"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="15dp"
-
-            android:background="@drawable/settings" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="-32dp"
+            android:layout_marginLeft="5dp"
             android:fontFamily="@font/press_start_2p"
+            android:layout_marginTop="10dp"
             android:text="Случайная игра"
             android:textColor="#FFFFFF"
-            android:textSize="30sp" />
+            android:textSize="22sp" />
 
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
         android:gravity="center"
-        android:id="@+id/above">
+        android:id="@id/above"
+        android:background="@drawable/customborderbottom"
+        >
 
         <ImageButton
             android:id="@+id/home"
             android:layout_width="33sp"
             android:layout_height="33sp"
-            android:layout_gravity="end"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="15dp"
-
-            android:background="@drawable/home" />
+            android:layout_marginRight="40dp"
+            android:background="@drawable/home_icon_1"
+            />
 
         <ImageButton
             android:id="@+id/lupa"
             android:layout_width="33sp"
             android:layout_height="33sp"
-            android:layout_gravity="end"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="15dp"
-
-            android:background="@drawable/lupa" />
+            android:layout_marginRight="40dp"
+            android:background="@drawable/zalupa_icon" />
 
         <ImageButton
             android:id="@+id/calendar"
             android:layout_width="33sp"
             android:layout_height="33sp"
-            android:layout_gravity="end"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="15dp"
-
-            android:background="@drawable/calendar" />
+            android:layout_marginRight="40dp"
+            android:background="@drawable/calendar_icon" />
 
         <ImageButton
             android:id="@+id/kubik"
             android:layout_width="33sp"
             android:layout_height="33sp"
-            android:layout_gravity="end"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="15dp"
-
-            android:background="@drawable/kubik" />
+            android:layout_marginRight="40dp"
+            android:background="@drawable/ramdom_game_icon" />
 
         <ImageButton
             android:id="@+id/profile"
             android:layout_width="33sp"
             android:layout_height="33sp"
-            android:layout_gravity="end"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="15dp"
-
-            android:background="@drawable/profile" />
+            android:background="@drawable/profile_icon" />
     </LinearLayout>
 </RelativeLayout>

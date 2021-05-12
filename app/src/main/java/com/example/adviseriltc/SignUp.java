@@ -21,30 +21,19 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+
 public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
     private FirebaseAuth mAuth;
 
     private EditText editFullName, editNickname, editEmail, editPassword;
     private TextView textSignUpBack, labelName;
+    private ArrayList<fvdGame> fvdGamess;
     private ProgressBar progressBar;
     private Button signUpBtn;
 
-    /**
-     *
-     * ...
-     * final LinearLayout newView = (LinearLayout)getLayoutInflater().inflate(R.layout.single_skill_row, null);
-     * myEditText = newView.findViewById(R.id.editDescricao);
-     * ...
-     * After that in the onClick callback of your button you can get it's text like this:
-     *
-     * register_btn.setOnClickListener(new View.OnClickListener() {
-     *         @Override
-     *         public void onClick(View view) {
-     *         String text = myEditText.getText().toString();
-     * });
-     * @param savedInstanceState
-     */
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +85,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         String nickName = editNickname.getText().toString().trim();
         String email = editEmail.getText().toString().trim();
         String password = editPassword.getText().toString().trim();
+        ArrayList<fvdGame> fvdGames= fvdGamess;
 
 
         //progressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -136,6 +126,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             return;
         }
 
+
         //progressBar.setVisibility(View.VISIBLE);
 
         mAuth.createUserWithEmailAndPassword(email,password)
@@ -144,7 +135,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
 
-                            User user = new User(fullName, nickName, email, password);
+                            User user = new User(fullName, nickName, email, password, fvdGames);
 
                             FirebaseDatabase.getInstance().getReference("Users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -152,7 +143,8 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()) {
-                                        Toast.makeText(com.example.adviseriltc.SignUp.this, "Пользователь зарегистрирован!", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(com.example.adviseriltc.SignUp.this, "Пользователь зарегистрирован!", Toast.LENGTH_SHORT).show();
+                                        startActivity(new Intent(SignUp.this, News.class));
                                         //progressBar.setVisibility(View.GONE);
 
                                         //redirect to SingIn layout
@@ -170,4 +162,5 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                     }
                 });
     }
+
 }

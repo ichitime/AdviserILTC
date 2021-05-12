@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="250dp"
+    android:clickable="true"
+    android:id="@+id/cv_news"
+    android:foreground="?android:attr/selectableItemBackground"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="10dp"
+    app:cardBackgroundColor="@android:color/transparent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#B38284D1">
+
+<ImageView
+    android:id="@+id/img_news"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:src="@drawable/huy"
+    android:scaleType="centerCrop"
+    >
+</ImageView>
+
+    <TextView
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:id="@+id/title_news"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="awfawfwafwafawfafwafwaf"
+        android:background="#80000000"
+        android:textSize="22sp"/>
+
+    <TextView
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:id="@+id/dsc_news"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:gravity="bottom"
+        android:text="124321412421412412141411"
+        android:background="#80000000"
+        />
+            <TextView
+                android:id="@+id/link_news"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+
+        </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
